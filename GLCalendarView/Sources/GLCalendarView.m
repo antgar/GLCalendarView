@@ -37,7 +37,8 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
 
 @synthesize firstDate = _firstDate;
 @synthesize lastDate = _lastDate;
-
+NSTimeInterval lastClick;
+NSIndexPath *lastIndexPath;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -273,9 +274,18 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
 {
     NSDate *date = [self dateForCellAtIndexPath:indexPath];
     GLCalendarDateRange *range = [self selectedRangeForDate:date];
-    
     // if click in a range
     if (range && range.editable) {
+        NSTimeInterval now = [[[NSDate alloc] init] timeIntervalSince1970];
+        if ((now - lastClick < 0.3) && [indexPath isEqual:lastIndexPath]) {
+            // Double tap here
+            NSLog(@"Double Tap!");
+            [self removeRange:range];
+            [self finishEditRange:range continueEditing:NO];
+            return;
+        }
+        lastClick = now;
+        lastIndexPath = indexPath;
         if (range == self.rangeUnderEdit) {
             return;
         }
@@ -292,6 +302,7 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
             if (canAdd) {
                 GLCalendarDateRange *rangeToAdd = [self.delegate calenderView:self rangeToAddWithBeginDate:date];
                 [self addRange:rangeToAdd];
+                [self beginToEditRange:rangeToAdd]; //ANTOINE
             }
         }
     }
