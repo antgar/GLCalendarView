@@ -274,6 +274,7 @@ NSIndexPath *lastIndexPath;
 {
     NSDate *date = [self dateForCellAtIndexPath:indexPath];
     GLCalendarDateRange *range = [self selectedRangeForDate:date];
+    NSLog(@"%@", [GLDateUtils getGMTDate:date]);
     // if click in a range
     if (range && range.editable) {
         NSTimeInterval now = [[[NSDate alloc] init] timeIntervalSince1970];

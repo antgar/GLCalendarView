@@ -123,6 +123,12 @@
     }
 }
 
++(NSDate*)getGMTDate:(NSDate*)date{
+    NSCalendar *calendar = [GLDateUtils calendar];
+    NSDateComponents *components = [calendar components:CALENDAR_COMPONENTS fromDate:date];
+    [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    return [calendar dateFromComponents:components];
+}
 + (NSString *)descriptionForDate:(NSDate *)date
 {
     NSCalendar *calendar = [GLDateUtils calendar];
