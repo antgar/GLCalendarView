@@ -22,5 +22,5 @@
 + (NSDate *)maxForDate:(NSDate *)date1 andDate:(NSDate *)date2;
 + (NSDate *)minForDate:(NSDate *)date1 andDate:(NSDate *)date2;
 + (NSString *)monthText:(NSInteger)month;
-+(NSDate*)getGMTDate:(NSDate*)date;
++ (NSDate*)getGMTDate:(NSDate*)date;
 @end

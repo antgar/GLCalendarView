@@ -95,6 +95,9 @@
     NSLog(@"DID PRESS DATE %@", date);
 }
 
+- (void)calenderView:(GLCalendarView *)calenderView didDeleteRange:(GLCalendarDateRange *)range{
+    NSLog(@"DID DELETE RANGE %@", range);
+}
 - (IBAction)deleteButtonPressed:(id)sender
 {
     if (self.rangeUnderEdit) {

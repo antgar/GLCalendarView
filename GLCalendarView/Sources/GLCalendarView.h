@@ -21,6 +21,7 @@
 @optional
 - (NSArray *)weekDayTitlesForCalendarView:(GLCalendarView *)calendarView;
 - (void)calenderView:(GLCalendarView*)calendarView didPressDate:(NSDate *)date;
+- (void)calenderView:(GLCalendarView*)calenderView didDeleteRange:(GLCalendarDateRange *)range;
 @end
 
 

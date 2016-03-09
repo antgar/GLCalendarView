@@ -160,6 +160,9 @@ NSIndexPath *lastIndexPath;
 {
     [self.ranges removeObject:range];
     [self reloadFromBeginDate:range.beginDate toDate:range.endDate];
+    if ([self.delegate respondsToSelector:@selector(calenderView:didDeleteRange:)]) {
+        [self.delegate calenderView:self didDeleteRange:range];
+    }
 }
 
 - (void)updateRange:(GLCalendarDateRange *)range withBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate
