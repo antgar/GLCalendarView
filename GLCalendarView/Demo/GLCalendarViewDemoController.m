@@ -91,6 +91,10 @@
     NSLog(@"did update range: %@", range);
 }
 
+- (void)calenderView:(GLCalendarView *)calendarView didPressDate:(NSDate *)date{
+    NSLog(@"DID PRESS DATE %@", date);
+}
+
 - (IBAction)deleteButtonPressed:(id)sender
 {
     if (self.rangeUnderEdit) {

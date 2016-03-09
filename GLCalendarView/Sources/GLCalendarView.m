@@ -274,13 +274,15 @@ NSIndexPath *lastIndexPath;
 {
     NSDate *date = [self dateForCellAtIndexPath:indexPath];
     GLCalendarDateRange *range = [self selectedRangeForDate:date];
-    NSLog(@"%@", [GLDateUtils getGMTDate:date]);
+    //NSLog(@"%@", [GLDateUtils getGMTDate:date]);
+    if([self.delegate respondsToSelector:@selector(calenderView:didPressDate:)]){
+         [self.delegate calenderView:self didPressDate:[GLDateUtils getGMTDate:date]];
+    }
     // if click in a range
     if (range && range.editable) {
         NSTimeInterval now = [[[NSDate alloc] init] timeIntervalSince1970];
         if ((now - lastClick < 0.3) && [indexPath isEqual:lastIndexPath]) {
             // Double tap here
-            NSLog(@"Double Tap!");
             [self removeRange:range];
             [self finishEditRange:range continueEditing:NO];
             return;
